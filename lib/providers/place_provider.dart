@@ -9,7 +9,6 @@ import 'package:google_maps_webservice/geocoding.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
-import 'package:location_permissions/location_permissions.dart';
 
 class PlaceProvider extends ChangeNotifier {
   PlaceProvider(
@@ -45,9 +44,8 @@ class PlaceProvider extends ChangeNotifier {
 
   Future<void> updateCurrentLocation(bool forceAndroidLocationManager) async {
     try {
-      await LocationPermissions().requestPermissions();
-      var permission = await LocationPermissions().checkPermissionStatus();
-      if (permission == PermissionStatus.granted) {
+      var permission = await Geolocator.requestPermission();
+      if (permission != LocationPermission.denied || permission != LocationPermission.deniedForever) {
         currentPosition = await Geolocator.getCurrentPosition(
             desiredAccuracy: desiredAccuracy ?? LocationAccuracy.best);
       } else {
