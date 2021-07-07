@@ -18,9 +18,8 @@ dependencies:
   google_api_headers: ^1.0.0
   tuple: ^2.0.0-nullsafety.0
   http: ^0.13.0
+  os_detect: ^2.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-flutter:
