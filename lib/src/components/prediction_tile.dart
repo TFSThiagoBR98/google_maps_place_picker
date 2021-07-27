@@ -1,3 +1,5 @@
+//@dart = 2.13
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_webservice/places.dart';
 
@@ -5,12 +7,12 @@ class PredictionTile extends StatelessWidget {
   final Prediction prediction;
   final ValueChanged<Prediction>? onTap;
 
-  PredictionTile({required this.prediction, this.onTap});
+  const PredictionTile({Key? key, required this.prediction, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(Icons.location_on),
+      leading: const Icon(Icons.location_on),
       title: RichText(
         text: TextSpan(
           children: _buildPredictionText(context),

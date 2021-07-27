@@ -1,25 +1,27 @@
+//@dart = 2.13
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_api_headers/google_api_headers.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:google_maps_place_picker/google_maps_place_picker.dart';
-import 'package:google_maps_place_picker/providers/place_provider.dart';
-import 'package:google_maps_place_picker/src/autocomplete_search.dart';
-import 'package:google_maps_place_picker/src/controllers/autocomplete_search_controller.dart';
-import 'package:google_maps_place_picker/src/google_map_place_picker.dart';
-import 'package:google_maps_place_picker/src/utils/uuid.dart';
+import '../google_maps_place_picker.dart';
+import '../providers/place_provider.dart';
+import 'autocomplete_search.dart';
+import 'controllers/autocomplete_search_controller.dart';
+import 'google_map_place_picker.dart';
+import 'utils/uuid.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
-import "package:os_detect/os_detect.dart" as Platform;
+import "package:os_detect/os_detect.dart" as platform;
 
 enum PinState { Preparing, Idle, Dragging }
 enum SearchingState { Idle, Searching }
 
 class PlacePicker extends StatefulWidget {
-  PlacePicker({
+  const PlacePicker({
     Key? key,
     required this.apiKey,
     this.onPlacePicked,
@@ -191,7 +193,7 @@ class _PlacePickerState extends State<PlacePicker> {
   }
 
   Future<PlaceProvider> _initPlaceProvider() async {
-    final headers = await GoogleApiHeaders().getHeaders();
+    final headers = await const GoogleApiHeaders().getHeaders();
     final provider = PlaceProvider(
       widget.apiKey,
       widget.proxyBaseUrl,
@@ -253,7 +255,7 @@ class _PlacePickerState extends State<PlacePicker> {
               )
             ]);
           } else {
-            children.add(CircularProgressIndicator());
+            children.add(const CircularProgressIndicator());
           }
 
           return Scaffold(
@@ -277,10 +279,10 @@ class _PlacePickerState extends State<PlacePicker> {
             ? IconButton(
                 onPressed: () => Navigator.maybePop(context),
                 icon: Icon(
-                  Platform.isIOS ? Icons.arrow_back_ios : Icons.arrow_back,
+                  platform.isIOS ? Icons.arrow_back_ios : Icons.arrow_back,
                 ),
                 padding: EdgeInsets.zero)
-            : SizedBox(width: 15),
+            : const SizedBox(width: 15),
         Expanded(
           child: AutoCompleteSearch(
               appBarKey: appBarKey,
@@ -308,7 +310,7 @@ class _PlacePickerState extends State<PlacePicker> {
               searchForInitialValue: widget.searchForInitialValue,
               autocompleteOnTrailingWhitespace: widget.autocompleteOnTrailingWhitespace),
         ),
-        SizedBox(width: 5),
+        const SizedBox(width: 5),
       ],
     );
   }
@@ -376,7 +378,7 @@ class _PlacePickerState extends State<PlacePicker> {
           });
     } else {
       return FutureBuilder(
-        future: Future.delayed(Duration(milliseconds: 1)),
+        future: Future.delayed(const Duration(milliseconds: 1)),
         builder: (context, snap) {
           if (snap.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());

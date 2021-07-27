@@ -1,3 +1,5 @@
+//@dart = 2.13
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -6,11 +8,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:google_maps_place_picker/google_maps_place_picker.dart';
-import 'package:google_maps_place_picker/providers/place_provider.dart';
-import 'package:google_maps_place_picker/src/components/animated_pin.dart';
-import 'package:google_maps_place_picker/src/components/floating_card.dart';
-import 'package:google_maps_place_picker/src/place_picker.dart';
+import '../google_maps_place_picker.dart';
+import '../providers/place_provider.dart';
+import 'components/animated_pin.dart';
+import 'components/floating_card.dart';
+import 'place_picker.dart';
 import 'package:google_maps_webservice/geocoding.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:provider/provider.dart';
@@ -373,29 +375,29 @@ class GoogleMapPlacePicker extends StatelessWidget {
       child: Column(
         children: <Widget>[
           enableMapTypeButton!
-              ? Container(
+              ? SizedBox(
                   width: 35,
                   height: 35,
                   child: RawMaterialButton(
-                    shape: CircleBorder(),
+                    shape: const CircleBorder(),
                     fillColor: Theme.of(context).brightness == Brightness.dark ? Colors.black54 : Colors.white,
                     elevation: 8.0,
                     onPressed: onToggleMapType,
-                    child: Icon(Icons.layers),
+                    child: const Icon(Icons.layers),
                   ),
                 )
               : Container(),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           enableMyLocationButton!
-              ? Container(
+              ? SizedBox(
                   width: 35,
                   height: 35,
                   child: RawMaterialButton(
-                    shape: CircleBorder(),
+                    shape: const CircleBorder(),
                     fillColor: Theme.of(context).brightness == Brightness.dark ? Colors.black54 : Colors.white,
                     elevation: 8.0,
                     onPressed: onMyLocation,
-                    child: Icon(Icons.my_location),
+                    child: const Icon(Icons.my_location),
                   ),
                 )
               : Container(),

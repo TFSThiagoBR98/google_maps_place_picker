@@ -1,3 +1,5 @@
+//@dart = 2.13
+
 // Copyright (c) 2014, the Dart project authors.  Please see the AUTHORS file
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
@@ -17,7 +19,7 @@ import 'dart:math' show Random;
 /// For more information, see
 /// [en.wikipedia.org/wiki/Universally_unique_identifier](http://en.wikipedia.org/wiki/Universally_unique_identifier).
 class Uuid {
-  final Random _random = new Random();
+  final Random _random = Random();
 
   /// Generate a version 4 (random) uuid. This is a uuid scheme that only uses
   /// random numbers as the source of the generated uuid.
